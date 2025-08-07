@@ -8,9 +8,10 @@ interface CompressImageParams {
 function convertToWebp(filename: string): string {
   const lastDotIndex = filename.lastIndexOf('.');
   if (lastDotIndex === -1) {
-    return filename + '.webp';
+    return `${filename}.webp`;
   }
-  return filename.substring(0, lastDotIndex) + '.webp';
+
+  return `${filename.substring(0, lastDotIndex)}.webp`;
 }
 
 export function compressImage({
@@ -42,7 +43,7 @@ export function compressImage({
         let width = compressed.width;
         let height = compressed.height;
 
-        if (width > maxWidth) {
+        if (width > height) {
           if (width > maxWidth) {
             height *= maxWidth / width;
             width = maxWidth;
